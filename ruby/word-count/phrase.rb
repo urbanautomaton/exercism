@@ -5,13 +5,13 @@ class Phrase
   end
 
   def word_count
-    tokens.inject(Hash.new(0)) do |h, token|
-      h[token] += 1; h
+    words.inject(Hash.new(0)) do |h, word|
+      h[word] += 1; h
     end
   end
 
-  def tokens
-    @phrase.split(/[^\w]+/).map(&:downcase)
+  def words
+    @phrase.downcase.scan(/\w+/)
   end
 
 end
