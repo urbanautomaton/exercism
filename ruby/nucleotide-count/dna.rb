@@ -25,7 +25,10 @@ class DNA
   private
 
   def validate_with!(dna, valid_chars)
-    raise ArgumentError unless dna =~ /\A[#{valid_chars.join}]*\z/
+    mismatches = dna.scan(/[^#{valid_chars}.join}]/)
+    unless mismatches.empty?
+      raise ArgumentError, "Invalid characters: #{mismatches.inspect}", caller
+    end
   end
 
   def initial_counts

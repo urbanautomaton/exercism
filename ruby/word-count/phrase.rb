@@ -5,9 +5,7 @@ class Phrase
   end
 
   def word_count
-    words.inject(Hash.new(0)) do |h, word|
-      h[word] += 1; h
-    end
+    words.each_with_object(Hash.new(0)) {|word,h| h[word] += 1}
   end
 
   def words
